@@ -18,8 +18,7 @@ Question types include:
     - Decimal to 2s
     - Binary addition (with 1s) to decimal
     - Binary addition (with 2s) to binary (normal or 2s if -ve)
-
-** The code may be inaccurate at some parts. Proceed with caution **
+*
 """
 
 import random
