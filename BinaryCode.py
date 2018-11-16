@@ -1,25 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Thu Oct 12 21:18:50 2017
 
 @author: NaidaTania
-
-This is a simple code that gives you random question about binary
-Max is 8 bits [0,255], and 2s is limited to [-128,-1]
-Decimal is limited to integer
-
-Question types include:
-    - Binary to Decimal
-    - 1s to Decimal
-    - 2s to Decimal
-    - Decimal to Binary
-    - Decimal to 1s
-    - Decimal to 2s
-    - Binary addition (with 1s) to decimal
-    - Binary addition (with 2s) to binary (normal or 2s if -ve)
-
-** The code may be inaccurate at some parts. Proceed with caution **
 """
 
 import random
@@ -31,7 +13,7 @@ if roundNo <= 0:
     print("Lazy bum!")
     roundNo = -1
 else: 
-    print("Specific qn type? <enter -1 if no specific type>",end="")
+    print("Specific qn type? <from 0 to 7, -1 if no specific type>",end="")
     qnType = int(input(">> "))
 
 score = 0
@@ -163,7 +145,7 @@ def randNumNeg():
 
 while roundNo > 0:
     
-    if qnType >= 0:
+    if qnType >= 0 and qnType<=7:
         qnNum = qnType
     else:
         #Random number used to generate questions randomly
@@ -250,12 +232,12 @@ while roundNo > 0:
         trueAns = biDecConv (oneSConv(qn))
         print("Find the decimal of this 1s binary:", qnStr, end="")
         answer = input(">> ")
-        if int(answer) == trueAns:
-            print("Answer:", trueAns)
+        if (int(answer)*-1) == trueAns:
+            print("Answer:", (trueAns*-1))
             print("Eyy you got it right!")
             score += 1
         else:
-            print("Answer:", trueAns)
+            print("Answer:", (trueAns*-1))
             print("Crap, you got it wrong. Next!")
     
     if qnNum == 5:
@@ -265,12 +247,12 @@ while roundNo > 0:
         trueAns = biDecConv (oneSConv(revTwoSConv((qn))))
         print("Find the decimal of this 2s binary:", qnStr, end="")
         answer = input(">> ")
-        if int(answer) == trueAns:
-            print("Answer:", trueAns)
+        if (int(answer)*-1) == trueAns:
+            print("Answer:", (trueAns*-1))
             print("Eyy you got it right!")
             score += 1
         else:
-            print("Answer:", trueAns)
+            print("Answer:", (trueAns*-1))
             print("Crap, you got it wrong. Next!")
     
     if qnNum == 6:
@@ -279,7 +261,7 @@ while roundNo > 0:
         qn1 = decBiConv(ans1)
         qn1str = ''.join([str(x) for x in qn1])
         ans2 = randNum()*-1
-        qn2 = twoSConv(oneSConv(decBiConv(ans2)))
+        qn2 = oneSConv(decBiConv(ans2))
         qn2str = ''.join([str(x) for x in qn2])
         print("Give the decimal value of",qn1str,"+ (1s)",qn2str, end="")
         answer = input(">> ")
